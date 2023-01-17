@@ -13,3 +13,6 @@ var entry=document.createElement('li');
 entry.className='list-group-item';
 entry.innerText='new list';
 list1[0].appendChild(entry);
+let fc=document.querySelectorAll('.list-group-item');
+fc[1].style.backgroundColor='green';
+fc[3].style.visibility='hidden';
