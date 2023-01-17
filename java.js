@@ -8,3 +8,8 @@ list[2].style.backgroundColor='green';
 for(let i=0;i<list.length;i++){
     list[i].style.fontWeight='Bold';
 }
+let list1=document.getElementsByTagName('ul');
+var entry=document.createElement('li');
+entry.className='list-group-item';
+entry.innerText='new list';
+list1[0].appendChild(entry);
