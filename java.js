@@ -16,3 +16,25 @@ list1[0].appendChild(entry);
 let fc=document.querySelectorAll('.list-group-item');
 fc[1].style.backgroundColor='green';
 fc[3].style.visibility='hidden';
+
+var itemList=document.querySelector('#items');
+
+console.log(itemList.lastElementChild);
+console.log(itemList.nextElementSibling);
+
+let newdiv=document.createElement('div');
+
+newdiv.className='hello';
+newdiv.id='hello';
+var textnode=document.createTextNode('Hello world my name is akash saxena');
+newdiv.appendChild(textnode);
+console.log(newdiv);
+
+let additem=document.querySelector('header .container');
+let h1=document.querySelector('header h1');
+console.log(additem);
+additem.insertBefore(newdiv,h1);
+newdiv.style.fontSize='30px';
+
+
+
