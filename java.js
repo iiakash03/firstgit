@@ -3,6 +3,27 @@ console.log(submit);
 submit.addEventListener('click',submitted);
 let del=document.getElementById('items');
 del.addEventListener('click',deleElement);
+var search=document.getElementById('filter');
+search.addEventListener('keyup',searchByKey);
+
+function searchByKey(e){
+    let text=e.target.value.toLowerCase();
+    //console.log(text);
+    var items=document.getElementsByTagName('li');
+
+    Array.from(items).forEach(element => {
+        var itemName=element.firstChild.textContent;
+        var description=element.childNodes[1].textContent;
+        if(itemName.toLowerCase().indexOf(text)!=-1 || description.toLowerCase().indexOf(text)!=-1){
+            element.style.display='block';
+        }else{
+            element.style.display='none';
+        }
+        
+    });
+
+}
+
 
 function deleElement(e){
     if(e.target.className=='btn btn-danger btn-sm float-right delete'){
@@ -17,7 +38,8 @@ function deleElement(e){
 
 function submitted(e){
     e.preventDefault();
-    var addItem=document.getElementById('item');
+    var addItem=document.getElementById('item').value;
+    var description=document.getElementById('item2').value;
 
     let list=document.createElement('li');
     list.className='list-group-item'
@@ -28,7 +50,10 @@ function submitted(e){
     button2.className='btn btn-success btn-sm float-right delete';
     button.innerText='X';
     button2.innerText='Edit';
-    list.innerText=addItem.value;
+    const textNode=document.createTextNode(addItem)
+    const descriptionNode=document.createTextNode(description);
+    list.appendChild(textNode);
+    list.appendChild(descriptionNode);
     list.appendChild(button);
     list.appendChild(button2);
     let allitems=document.getElementById('items');
