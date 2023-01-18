@@ -1,40 +1,36 @@
-console.log("dnjkswh");
-document.title="My Name";
-let header=document.getElementById("header-title");
-console.log(header);
-header.style.border='solid 3px #000';
-let list=document.getElementsByClassName('list-group-item');
-list[2].style.backgroundColor='green';
-for(let i=0;i<list.length;i++){
-    list[i].style.fontWeight='Bold';
+var submit=document.getElementById('butt');
+console.log(submit);
+submit.addEventListener('click',submitted);
+let del=document.getElementById('items');
+del.addEventListener('click',deleElement);
+
+function deleElement(e){
+    if(e.target.className=='btn btn-danger btn-sm float-right delete'){
+        let delist=e.target.parentElement;
+        console.log(delist);
+        del.removeChild(delist);
+
+    console.log('1');
+    }
+
 }
-let list1=document.getElementsByTagName('ul');
-var entry=document.createElement('li');
-entry.className='list-group-item';
-entry.innerText='new list';
-list1[0].appendChild(entry);
-let fc=document.querySelectorAll('.list-group-item');
-fc[1].style.backgroundColor='green';
-fc[3].style.visibility='hidden';
 
-var itemList=document.querySelector('#items');
+function submitted(e){
+    e.preventDefault();
+    var addItem=document.getElementById('item');
 
-console.log(itemList.lastElementChild);
-console.log(itemList.nextElementSibling);
-
-let newdiv=document.createElement('div');
-
-newdiv.className='hello';
-newdiv.id='hello';
-var textnode=document.createTextNode('Hello world my name is akash saxena');
-newdiv.appendChild(textnode);
-console.log(newdiv);
-
-let additem=document.querySelector('header .container');
-let h1=document.querySelector('header h1');
-console.log(additem);
-additem.insertBefore(newdiv,h1);
-newdiv.style.fontSize='30px';
-
-
-
+    let list=document.createElement('li');
+    list.className='list-group-item'
+    //let text=documnet.createTextNode('new list');
+    let button=document.createElement('button');
+    let button2=document.createElement('button');
+    button.className='btn btn-danger btn-sm float-right delete';
+    button2.className='btn btn-success btn-sm float-right delete';
+    button.innerText='X';
+    button2.innerText='Edit';
+    list.innerText=addItem.value;
+    list.appendChild(button);
+    list.appendChild(button2);
+    let allitems=document.getElementById('items');
+    allitems.appendChild(list);
+}
