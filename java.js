@@ -46,7 +46,7 @@ function submitted(e){
     }
     localStorage.removeItem('desc')
     let Obj_serialize=JSON.stringify(item_obj);
-    localStorage.setItem('val1',item_obj);
+    localStorage.setItem(addItem,item_obj);
     console.log(Obj_serialize);
     //localStorage.setItem('desc',description);
 
