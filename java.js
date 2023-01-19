@@ -40,6 +40,8 @@ function submitted(e){
     e.preventDefault();
     var addItem=document.getElementById('item').value;
     var description=document.getElementById('item2').value;
+    localStorage.setItem('val',addItem);
+    localStorage.setItem('desc',description);
 
     let list=document.createElement('li');
     list.className='list-group-item'
@@ -58,4 +60,5 @@ function submitted(e){
     list.appendChild(button2);
     let allitems=document.getElementById('items');
     allitems.appendChild(list);
+
 }
