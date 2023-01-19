@@ -40,8 +40,15 @@ function submitted(e){
     e.preventDefault();
     var addItem=document.getElementById('item').value;
     var description=document.getElementById('item2').value;
-    localStorage.setItem('val',addItem);
-    localStorage.setItem('desc',description);
+    let item_obj={
+        "item_name":addItem,
+        "desc":description
+    }
+    localStorage.removeItem('desc')
+    let Obj_serialize=JSON.stringify(item_obj);
+    localStorage.setItem('val1',item_obj);
+    console.log(Obj_serialize);
+    //localStorage.setItem('desc',description);
 
     let list=document.createElement('li');
     list.className='list-group-item'
