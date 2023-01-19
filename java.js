@@ -1,71 +1,40 @@
-var submit=document.getElementById('butt');
-console.log(submit);
-submit.addEventListener('click',submitted);
-let del=document.getElementById('items');
-del.addEventListener('click',deleElement);
-var search=document.getElementById('filter');
-search.addEventListener('keyup',searchByKey);
-
-function searchByKey(e){
-    let text=e.target.value.toLowerCase();
-    //console.log(text);
-    var items=document.getElementsByTagName('li');
-
-    Array.from(items).forEach(element => {
-        var itemName=element.firstChild.textContent;
-        var description=element.childNodes[1].textContent;
-        if(itemName.toLowerCase().indexOf(text)!=-1 || description.toLowerCase().indexOf(text)!=-1){
-            element.style.display='block';
-        }else{
-            element.style.display='none';
-        }
-        
-    });
-
+const display=document.getElementById('items');
+for(let i=0;i<localStorage.length;i++){
+    display.appendChild(localStorage.get())
 }
 
-
-function deleElement(e){
-    if(e.target.className=='btn btn-danger btn-sm float-right delete'){
-        let delist=e.target.parentElement;
-        console.log(delist);
-        del.removeChild(delist);
-
-    console.log('1');
-    }
-
-}
-
-function submitted(e){
+function displayItems(e){
     e.preventDefault();
-    var addItem=document.getElementById('item').value;
-    var description=document.getElementById('item2').value;
-    let item_obj={
-        "item_name":addItem,
-        "desc":description
+    //console.log("abcd");
+    const obj={
+        "name":e.target.fname.value,
+        "email":e.target.femail.value,
+        "phone":e.target.fphone.value,
     }
-    localStorage.removeItem('desc')
-    let Obj_serialize=JSON.stringify(item_obj);
-    localStorage.setItem(addItem,item_obj);
-    console.log(Obj_serialize);
-    //localStorage.setItem('desc',description);
 
-    let list=document.createElement('li');
-    list.className='list-group-item'
-    //let text=documnet.createTextNode('new list');
-    let button=document.createElement('button');
-    let button2=document.createElement('button');
-    button.className='btn btn-danger btn-sm float-right delete';
-    button2.className='btn btn-success btn-sm float-right delete';
-    button.innerText='X';
-    button2.innerText='Edit';
-    const textNode=document.createTextNode(addItem)
-    const descriptionNode=document.createTextNode(description);
-    list.appendChild(textNode);
-    list.appendChild(descriptionNode);
+    const obj_serialize=JSON.stringify(obj);
+    console.log(obj_serialize);
+
+    localStorage.setItem(email,obj_serialize);
+    const show=document.getElementById('items');
+    const list=document.createElement('li');
+    const button=document.createElement('button');
+    button.className='btn btn-danger';
+    button.innerText='Delete';
+    console.log(button);
+   
+    const textNode=document.createTextNode(obj_serialize);
+    list.appendChild(textNode)
     list.appendChild(button);
-    list.appendChild(button2);
-    let allitems=document.getElementById('items');
-    allitems.appendChild(list);
+    show.appendChild(list);
+
+}
+const it=document.getElementById('items');
+it.addEventListener('click',deleteElement);
+function deleteElement(e){
+    if(e.target.className==='btn btn-danger'){
+        it.removeChild(e.target.parentNode);
+    }
+
 
 }
