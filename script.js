@@ -37,6 +37,7 @@ function addProduct(event){
 let butclick=document.getElementById("addItems");
 butclick.addEventListener('click',deleteProduct);
 
+
 function deleteProduct(e){
     if(e.target.className="delete"){
         let val=document.getElementById("span");
